@@ -62,12 +62,12 @@ namespace Combat
 
 		public void SpawnProjectile(ProjectileData projectileData, Vector3 position, Vector3 direction)
 		{
-			Projectile newProjectile = Instantiate(
+			GameObject newProjectile = Instantiate(
 				projectilePrefab,
 				position,
 				Quaternion.Euler(direction), transform
 			);
-			newProjectile.Initialize(projectileData, direction);
+			newProjectile.GetComponent<Projectile>().Initialize(projectileData, direction);
 		}
 
 		private void Initialize()
