@@ -6,12 +6,11 @@ using UnityEngine.InputSystem;
 
 namespace Player
 {
-	public class PlayerController : MonoBehaviour
+	public class PlayerInputController : MonoBehaviour
 	{
-		// ----------------------------------------------------------------
 		#region Variables
 		[SerializeField]
-		private PlayerInput playerInput;
+		private UnityEngine.InputSystem.PlayerInput playerInput;
 
 		[SerializeField]
 		private PlayerAnimationBehaviour playerAnimationBehaviour;
@@ -20,32 +19,22 @@ namespace Player
 		private PlayerMovementBehaviour playerMovementBehaviour;
 
 		[SerializeField]
-		private PlayerWeaponBehaviour playerWeaponBehaviour;
+		private PlayerCombatBehaviour playerCombatBehaviour;
 
 		#endregion Variables
-		// ----------------------------------------------------------------
+		
 		#region Methods
 		
 		private void Awake()
 		{
-			playerInput = GetComponent<PlayerInput>();
+			playerInput = GetComponent<UnityEngine.InputSystem.PlayerInput>();
 			playerAnimationBehaviour = GetComponent<PlayerAnimationBehaviour>();
 			playerMovementBehaviour = GetComponent<PlayerMovementBehaviour>();
-			playerWeaponBehaviour = GetComponent<PlayerWeaponBehaviour>();
-		}
-
-		private void Start()
-		{
-			Initialization();
-		}
-
-		void Initialization()
-		{
-			playerWeaponBehaviour.Initialization();
+			playerCombatBehaviour = GetComponent<PlayerCombatBehaviour>();
 		}
 
 		#endregion
-		// ----------------------------------------------------------------
+		
 		#region Callbacks
 
 		public void OnMovement(InputAction.CallbackContext ctx)
@@ -67,10 +56,10 @@ namespace Player
 		public void OnShoot(InputAction.CallbackContext ctx)
 		{
 			if (ctx.started) {
-				playerWeaponBehaviour.isShooting = true;
+				playerCombatBehaviour.SetShootingMode(true);
 			} 
 			else if (ctx.canceled) {
-				playerWeaponBehaviour.isShooting = false;
+				playerCombatBehaviour.SetShootingMode(false);
 			}
 		}
 
@@ -82,6 +71,5 @@ namespace Player
 		}
 
 		#endregion
-		// ----------------------------------------------------------------
 	}
 }

@@ -17,18 +17,6 @@ namespace Player
 		[SerializeField] [Range(0.0f, 1.0f)]
 		private float slowSpeedModifier;
 
-		[SerializeField]
-		private Transform rightBorder;
-
-		[SerializeField]
-		private Transform leftBorder;
-
-		[SerializeField]
-		private Transform upBorder;
-
-		[SerializeField]
-		private Transform downBorder;
-
 		private Vector3 _desiredPlayerPosition;
 
 		[HideInInspector]
@@ -42,15 +30,7 @@ namespace Player
 
 		//---------------------------------------------------
 
-		#region MonoBehaviour functions
-
-		private void Start()
-		{
-			SetBorder(leftBorder, "LeftBorder");
-			SetBorder(rightBorder, "RightBorder");
-			SetBorder(upBorder, "UpBorder");
-			SetBorder(downBorder, "DownBorder");
-		}
+		#region Methods
 
 		private void Update()
 		{
@@ -62,21 +42,21 @@ namespace Player
 			);
 			_desiredPlayerPosition = transform.position;
 
-			if (_desiredPlayerPosition.x > rightBorder.position.x) {
-				_desiredPlayerPosition = new Vector3(rightBorder.position.x, _desiredPlayerPosition.y,
+			if (_desiredPlayerPosition.x > Borders.instance.rightBorder.position.x) {
+				_desiredPlayerPosition = new Vector3(Borders.instance.rightBorder.position.x, _desiredPlayerPosition.y,
 					_desiredPlayerPosition.z);
 			}
-			else if (transform.position.x < leftBorder.position.x) {
-				_desiredPlayerPosition = new Vector3(leftBorder.position.x, _desiredPlayerPosition.y,
+			else if (transform.position.x < Borders.instance.leftBorder.position.x) {
+				_desiredPlayerPosition = new Vector3(Borders.instance.leftBorder.position.x, _desiredPlayerPosition.y,
 					_desiredPlayerPosition.z);
 			}
 			
-			if (transform.position.y > upBorder.position.y) {
-				_desiredPlayerPosition = new Vector3(_desiredPlayerPosition.x, upBorder.position.y,
+			if (transform.position.y > Borders.instance.upBorder.position.y) {
+				_desiredPlayerPosition = new Vector3(_desiredPlayerPosition.x, Borders.instance.upBorder.position.y,
 					_desiredPlayerPosition.z);
 			}
-			else if (transform.position.y < downBorder.position.y) {
-				_desiredPlayerPosition = new Vector3(_desiredPlayerPosition.x, downBorder.position.y,
+			else if (transform.position.y < Borders.instance.downBorder.position.y) {
+				_desiredPlayerPosition = new Vector3(_desiredPlayerPosition.x, Borders.instance.downBorder.position.y,
 					_desiredPlayerPosition.z);
 			}
 
@@ -84,19 +64,6 @@ namespace Player
 		}
 
 		#endregion
-		
-		//---------------------------------------------------
-		
-		#region Methods
 
-		void SetBorder(Transform borderTransform, string borderName)
-		{
-			if (borderTransform == null) {
-				borderTransform = GameObject.Find(borderName).transform;
-			}
-		}
-
-		#endregion
-		
 	}
 }

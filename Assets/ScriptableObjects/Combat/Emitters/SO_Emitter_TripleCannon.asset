@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 878b28de99f613f4cb44fde0f63cbdb9, type: 3}
-  m_Name: SO_Weapon_Cannon
+  m_Name: SO_Emitter_TripleCannon
   m_EditorClassIdentifier: 
-  weaponName: Cannon
-  description: Just an ordinary rusty cannon
-  weaponSprite: {fileID: 21300000, guid: 72549c12086aa2c4f978f5112f33b261, type: 3}
-  projectileData: {fileID: 11400000, guid: 695f92e2124e78f43baf80aa91abada2, type: 2}
-  attackSpeed: 10
+  emitterName: Triple Cannon
+  description: Improved cannon
+  emitterSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  spawnRate: 1
+  pattern: {fileID: 11400000, guid: 9e460008c05fdba42979425c676e9730, type: 2}

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8717e128b251de240be84b4748eedca3, type: 3}
+  m_Name: SO_Enemy_Mine
+  m_EditorClassIdentifier: 
+  enemyName: Mine
+  description: 
+  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  hitPoints: 10
+  movementSpeed: 0.3
+  movementPattern: {fileID: 11400000, guid: 9a483e1dfe6383a4ea49c12a8d5d8955, type: 2}
