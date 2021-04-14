@@ -1,23 +1,24 @@
 using System.Collections;
-using UnityEngine;
 using PathCreation;
+using UnityEngine;
 
-[CreateAssetMenu(fileName = "New MovementPattern", menuName = "MovementPattern/ArcMoveMP", order = 53)]
-public class ArcMoveMP : MovementPattern
+namespace MovementPatterns
 {
-	[SerializeField]
-	private PathCreator pathCreator;
-
-	public override IEnumerator MovementBehaviour(Transform transform, float movementSpeed)
+	[CreateAssetMenu(fileName = "New MovementPattern", menuName = "MovementPattern/ArcMoveMP", order = 53)]
+	public class ArcMoveMP : BaseMovementPattern
 	{
-		float lifeTime = 0;
+		[SerializeField]
+		private PathCreator pathCreator;
 
-		while (transform.position != pathCreator.path.GetPoint(pathCreator.path.NumPoints - 1)) {
-			yield return null;
-			lifeTime += Time.deltaTime;
-			transform.position = pathCreator.path.GetPointAtDistance(lifeTime * movementSpeed, EndOfPathInstruction.Stop);
+		public override IEnumerator MovementBehaviour(Transform transform, float movementSpeed)
+		{
+			float lifeTime = 0;
+
+			while (transform.position != pathCreator.path.GetPoint(pathCreator.path.NumPoints - 1)) {
+				yield return null;
+				lifeTime += Time.deltaTime;
+				transform.position = pathCreator.path.GetPointAtDistance(lifeTime * movementSpeed, EndOfPathInstruction.Stop);
+			}
 		}
-
-		yield break;
 	}
 }

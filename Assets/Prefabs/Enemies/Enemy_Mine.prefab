@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emitterData: {fileID: 11400000, guid: bc6994ed8ffc59f4182a468c82567829, type: 2}
   isActive: 0
-  emitterOwner: 1
+  emitterDamageSource: 1
 --- !u!212 &829740418
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d091c1d5767774b4b92be614fe106549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitPoints: 2
+  maxHitPoints: 1
   getDamagedFrom: 00000000
 --- !u!50 &632043119161751441
 Rigidbody2D:
@@ -247,9 +247,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.02, y: 0.02}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.26
 --- !u!114 &1636657930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,4 +263,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 5
-  movementPattern: {fileID: 11400000, guid: ea0a26a5c3137124899c6c2af52482ec, type: 2}
+  baseMovementPattern: {fileID: 11400000, guid: ea0a26a5c3137124899c6c2af52482ec, type: 2}

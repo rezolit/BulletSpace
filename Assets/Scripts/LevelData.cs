@@ -1,11 +1,13 @@
 using System.Collections.Generic;
+using Enemy;
+using Managers;
 using UnityEngine;
 
 [System.Serializable]
 public struct SpawnInfo
 {
 	public PointType spawnPointType;
-	public Enemy enemy;
+	public EnemyController enemyController;
 }
 
 [System.Serializable]

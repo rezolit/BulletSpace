@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Combat
+namespace Abilities
 {
 	[CreateAssetMenu(fileName = "New Ability", menuName = "Combat/Ability", order = 53)]
 	public class AbilityData : ScriptableObject

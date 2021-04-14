@@ -1,10 +1,9 @@
-using System;
+using Managers;
 using UnityEngine;
-
 
 namespace Player
 {
-	public class PlayerManager : MonoBehaviour
+	public class PlayerController : MonoBehaviour
 	{
 		private void Start()
 		{
@@ -18,6 +17,11 @@ namespace Player
 		{
 			if (id == gameObject.GetInstanceID()) {
 				EventManager.Instance.OnDeath -= Death;
+
+				if (DebugManager.Instance.IsLogDeath) {
+					Debug.Log("Death for " + gameObject.name);
+				}
+				
 				Destroy(gameObject);
 			}
 			else {

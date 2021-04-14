@@ -1,7 +1,7 @@
-public class ObjectPoolContainer<T>
+namespace Pool
+{
+	public class ObjectPoolContainer<T>
 	{
-		private T item;
-
 		public bool Used { get; private set; }
 
 		public void Consume()
@@ -9,20 +9,11 @@ public class ObjectPoolContainer<T>
 			Used = true;
 		}
 
-		public T Item
-		{
-			get
-			{
-				return item;
-			}
-			set
-			{
-				item = value;
-			}
-		}
+		public T Item { get; set; }
 
 		public void Release()
 		{
 			Used = false;
 		}
 	}
+}

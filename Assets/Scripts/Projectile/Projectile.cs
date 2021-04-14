@@ -1,76 +1,77 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 
-/// <summary>
-/// Who is projectile's owner
-/// </summary>
-public enum OwnerType
+namespace Projectile
 {
-	Player,
-	Enemy
-}
+	/// <summary>
+	/// Who is projectile's owner
+	/// </summary>
+	public enum DamageSourceType
+	{
+		Player,
+		Enemy
+	}
 
-public class Projectile : MonoBehaviour
-{
-	#region Fields
+	public class Projectile : MonoBehaviour
+	{
+		#region Fields
 
-	[HideInInspector]
-	public Vector3 movementDirection;
-	[HideInInspector]
-	public float speed;
-	[HideInInspector]
-	public float angularSpeed;
-	[HideInInspector]
-	public float acceleration;
-	[HideInInspector]
-	public float angularAcceleraion;
-	[HideInInspector]
-	public bool isTargetAiming;
-	[HideInInspector]
-	public float jitterAmount;
-	[HideInInspector]
-	public float currentLifetime;
+		[HideInInspector]
+		public Vector3 movementDirection;
+		[HideInInspector]
+		public float speed;
+		[HideInInspector]
+		public float angularSpeed;
+		[HideInInspector]
+		public float acceleration;
+		[HideInInspector]
+		public float angularAcceleraion;
+		[HideInInspector]
+		public bool isTargetAiming;
+		[HideInInspector]
+		public float jitterAmount;
+		[HideInInspector]
+		public float currentLifetime;
 	
-	public OwnerType Owner { get; set; }
+		public DamageSourceType DamageSource { get; set; }
 
-	[SerializeField]
-	private int damage;
+		[SerializeField]
+		private int damage;
 
-	public int Damage => damage;
+		public int Damage => damage;
 
-	#endregion
+		#endregion
 
-	#region Methods
+		#region Methods
 
-	private void Start()
-	{
-		currentLifetime = 0.0f;
-	}
-
-	private void Update()
-	{
-		ProjectileBehaviour();
-	}
-
-	private void ProjectileBehaviour()
-	{
-		currentLifetime += Time.deltaTime;
-		speed *= acceleration;
-		transform.position += movementDirection * (speed * Time.deltaTime);
-
-		if (!GlobalPoints.Instance.IsInsideBorders(transform.position, 2.0f)) {
-			Deactivate();
+		private void Start()
+		{
+			currentLifetime = 0.0f;
 		}
+
+		private void Update()
+		{
+			ProjectileBehaviour();
+		}
+
+		private void ProjectileBehaviour()
+		{
+			currentLifetime += Time.deltaTime;
+			speed *= acceleration;
+			transform.position += movementDirection * (speed * Time.deltaTime);
+
+			if (!GlobalPoints.Instance.IsInsideBorders(transform.position, 2.0f)) {
+				Deactivate();
+			}
+		}
+
+		public void Deactivate()
+		{
+			PoolManager.Instance.ReleaseObject(gameObject);
+		}
+
+
+		#endregion
+
 	}
-
-	public void Deactivate()
-	{
-		PoolManager.Instance.ReleaseObject(gameObject);
-	}
-
-
-	#endregion
-
-	}
+}

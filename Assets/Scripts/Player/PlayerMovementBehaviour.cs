@@ -1,15 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 
 namespace Player
 {
 	public class PlayerMovementBehaviour : MonoBehaviour
 	{
-		//---------------------------------------------------
 
-		#region Variables
+		#region Fields
 
 		[SerializeField]
 		private float movementSpeed;
@@ -28,19 +25,18 @@ namespace Player
 
 		#endregion
 
-		//---------------------------------------------------
-
 		#region Methods
 
 		private void Update()
 		{
 			// Movement logic
-			transform.Translate(
+			Transform playerTransform = transform;
+			playerTransform.Translate(
 				movementDirection * 
 				(movementSpeed * (isSlowedDown ? slowSpeedModifier : 1.0f) 
 				* Time.deltaTime)
 			);
-			_desiredPlayerPosition = transform.position;
+			_desiredPlayerPosition = playerTransform.position;
 
 			if (_desiredPlayerPosition.x > GlobalPoints.Instance.rightBorder.position.x) {
 				_desiredPlayerPosition = new Vector3(GlobalPoints.Instance.rightBorder.position.x, _desiredPlayerPosition.y,

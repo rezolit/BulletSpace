@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,9 +5,10 @@ namespace Player
 {
 	public class PlayerInputController : MonoBehaviour
 	{
-		#region Variables
+		#region Fields
+		
 		[SerializeField]
-		private UnityEngine.InputSystem.PlayerInput playerInput;
+		private PlayerInput playerInput;
 
 		[SerializeField]
 		private PlayerAnimationBehaviour playerAnimationBehaviour;
@@ -27,7 +25,7 @@ namespace Player
 		
 		private void Awake()
 		{
-			playerInput = GetComponent<UnityEngine.InputSystem.PlayerInput>();
+			playerInput = GetComponent<PlayerInput>();
 			playerAnimationBehaviour = GetComponent<PlayerAnimationBehaviour>();
 			playerMovementBehaviour = GetComponent<PlayerMovementBehaviour>();
 			playerShootingBehaviour = GetComponent<PlayerShootingBehaviour>();

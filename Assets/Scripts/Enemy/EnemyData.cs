@@ -1,24 +1,26 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Enemy", menuName = "Enemy/Enemy", order = 51)]
-public class EnemyData : ScriptableObject
+namespace Enemy
 {
-	#region Fields
+	[CreateAssetMenu(fileName = "New Enemy", menuName = "Enemy/Enemy", order = 51)]
+	public class EnemyData : ScriptableObject
+	{
+		#region Fields
 
-	[SerializeField]
-	private string enemyName;
+		[SerializeField]
+		private string enemyName;
 
-	[SerializeField]
-	private string description;
+		[SerializeField]
+		private string description;
 
-	#endregion
+		#endregion
 
-	#region Methods
+		#region Methods
 	
-	public string Description => description;
+		public string Description => description;
 
-	public string EnemyName => enemyName;
+		public string EnemyName => enemyName;
 
-	#endregion
+		#endregion
+	}
 }

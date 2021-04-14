@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Emitter;
 using UnityEngine;
 
 namespace Player
@@ -12,7 +13,7 @@ namespace Player
 		#region Fields
 
 		[SerializeField]
-		private Emitter emitter;
+		private EmitterController emitterController;
 
 		[SerializeField] [Tooltip("All allowed emitters for player")]
 		private List<EmitterData> allowedEmitters;
@@ -23,16 +24,16 @@ namespace Player
 
 		private void Awake()
 		{
-			emitter = transform.GetChild(0).GetComponent<Emitter>();
-			if (emitter == null) {
+			emitterController = transform.GetChild(0).GetComponent<EmitterController>();
+			if (emitterController == null) {
 				throw new Exception("Add allowed emitters to player");
 			}
-			emitter.EmitterData = allowedEmitters[0];
+			emitterController.EmitterData = allowedEmitters[0];
 		}
 
 		public void SetShootingMode(bool isShooting)
 		{
-			emitter.isActive = isShooting;
+			emitterController.isActive = isShooting;
 		}
 
 		#endregion

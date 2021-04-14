@@ -16,14 +16,14 @@ MonoBehaviour:
   levelImage: {fileID: 21300000, guid: 3f2b14ffe2acc16429e252da6a885297, type: 3}
   enemiesWaves:
   - enemies:
-    - spawnPoint: 0
-      enemy: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    - spawnPointType: 0
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
     spawnTime: 3
   - enemies:
-    - spawnPoint: 0
-      enemy: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    - spawnPointType: 0
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
     spawnTime: 4
   - enemies:
-    - spawnPoint: 0
-      enemy: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    - spawnPointType: 0
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
     spawnTime: 5

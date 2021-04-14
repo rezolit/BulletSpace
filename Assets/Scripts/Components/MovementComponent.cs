@@ -1,20 +1,21 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using MovementPatterns;
 using UnityEngine;
 
-public class MovementComponent : MonoBehaviour
+namespace Components
 {
-	[SerializeField]
-	private float movementSpeed;
-
-	[SerializeField]
-	private MovementPattern movementPattern;
-
-	public Coroutine Coroutine { get; set; }
-
-	private void Start()
+	public class MovementComponent : MonoBehaviour
 	{
-		Coroutine = StartCoroutine(movementPattern.MovementBehaviour(transform, movementSpeed));
+		[SerializeField]
+		private float movementSpeed;
+
+		[SerializeField]
+		private BaseMovementPattern baseMovementPattern;
+
+		public Coroutine Coroutine { get; set; }
+
+		private void OnEnable()
+		{
+			Coroutine = StartCoroutine(baseMovementPattern.MovementBehaviour(transform, movementSpeed));
+		}
 	}
 }

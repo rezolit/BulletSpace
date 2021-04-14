@@ -1,4 +1,5 @@
 using System;
+using Managers;
 using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
@@ -11,7 +12,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 			_instance = gameObject.GetComponent<T>();
 		}
 		else {
-			Debug.LogError("[Singleton] Second instance of '" + typeof (T) + "' created!");
+			Debug.LogError("[Singleton] Second instance of '" + typeof(T) + "' created!");
 		}
 	}
 
@@ -27,10 +28,15 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 					_instance = singleton.AddComponent<T>();
 					singleton.name = "[Singleton] " + typeof(T);
 					DontDestroyOnLoad(singleton);
-					Debug.Log("[Singleton] An instance of '" + typeof(T) + "' was created: " + singleton);
+
+					if (DebugManager.Instance.IsLogSingletonInfo) {
+						Debug.Log("[Singleton] An instance of '" + typeof(T) + "' was created: " + singleton);
+					}
 				}
 				else {
-					Debug.Log("[Singleton] Using instance of '" + typeof(T) + "': " + _instance.gameObject.name);
+					if (DebugManager.Instance.IsLogSingletonInfo) {
+						Debug.Log("[Singleton] Using instance of '" + typeof(T) + "': " + _instance.gameObject.name);
+					}
 				}
 			}
 
