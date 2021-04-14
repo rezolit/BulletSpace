@@ -38,7 +38,7 @@ namespace Enemy
 			}
 		}
 
-		private void Start()
+		private void OnEnable()
 		{
 			foreach (EmitterController emitter in _emitters) {
 				emitter.isActive = true;
@@ -58,7 +58,10 @@ namespace Enemy
 		{
 			if (id == gameObject.GetInstanceID()) {
 				var movementComponent = GetComponent<MovementComponent>();
-				movementComponent.StopCoroutine(movementComponent.Coroutine);
+				if (movementComponent.Coroutine != null) {
+					movementComponent.StopCoroutine(movementComponent.Coroutine);
+				}
+
 				EventManager.Instance.OnDeath -= Death;
 				
 				if (DebugManager.Instance.IsLogDeath) {

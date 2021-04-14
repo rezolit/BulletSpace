@@ -16,6 +16,7 @@ namespace Components
 		private int maxHitPoints;
 		public int MaxHitPoints => maxHitPoints;
 
+		[SerializeField]
 		private int _currentHitPoints;
 
 		[SerializeField] [Tooltip("Who can damage this")]
@@ -25,7 +26,7 @@ namespace Components
 
 		#region Methods
 
-		private void Start()
+		private void OnEnable()
 		{
 			_currentHitPoints = maxHitPoints;
 		}
@@ -40,8 +41,8 @@ namespace Components
 				}
 			}
 		}
-	
-		private void GetDamaged(int damageValue)
+
+		public void GetDamaged(int damageValue)
 		{
 			if (DebugManager.Instance.IsLogDamage) {
 				Debug.Log(gameObject.name + " damaged: " + damageValue);

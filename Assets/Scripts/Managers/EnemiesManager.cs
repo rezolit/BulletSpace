@@ -26,7 +26,8 @@ namespace Managers
 				foreach (var enemy in enemiesWave.enemies) {
 					PoolManager.Instance.SpawnObject(enemy.enemyController.gameObject,
 						GlobalPoints.Instance.GetPointByEnum(enemy.spawnPointType).position,
-						Quaternion.identity);
+						Quaternion.identity
+					);
 					if (DebugManager.Instance.IsLogSpawnInfo) {
 						Debug.Log("Spawned new enemy " + enemy.enemyController.name);
 					}
