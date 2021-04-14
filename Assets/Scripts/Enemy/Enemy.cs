@@ -1,31 +1,25 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Combat;
-using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
+/// <summary>
+/// General class-component for all enemies
+/// </summary>
+[RequireComponent(typeof(MovementComponent))]
 public class Enemy : MonoBehaviour
 {
-
 	#region Fields
 	
 	[SerializeField]
 	private EnemyData enemyData;
 
-	private List<Emitter>  emitters;
+	private List<Emitter>  _emitters;
 
 	public EnemyData EnemyData {
 		get => enemyData;
-		set {
-			enemyData = value;
-			GetComponent<SpriteRenderer>().sprite = enemyData.Sprite;
-		}
+		set => enemyData = value;
 	}
-
-	private int	  _maxHitPoints;
-	private int   _currentHitPoints;
-	private float _lifeTime;
 
 	#endregion
 
@@ -33,36 +27,40 @@ public class Enemy : MonoBehaviour
 
 	private void Awake()
 	{
-		emitters = new List<Emitter>();
+		_emitters = new List<Emitter>();
 
 		var childEmitters = gameObject.GetComponentsInChildren<Emitter>();
 		foreach (Emitter emitter in childEmitters) {
-			emitters.Add(emitter);
+			_emitters.Add(emitter);
 		}
 	}
 
 	private void Start()
 	{
-		_currentHitPoints = _maxHitPoints;
-		_lifeTime = 0.0f;
-		GetComponent<SpriteRenderer>().sprite = enemyData.Sprite;
-
-		// TODO activating emitters
-		foreach (Emitter emitter in emitters) {
+		foreach (Emitter emitter in _emitters) {
 			emitter.isActive = true;
 		}
+		
+		EventManager.Instance.OnDeath += Death;
 	}
 
 	private void Update()
 	{
-		_lifeTime += Time.deltaTime;
-		enemyData.MovementPattern.MovementBehaviour(transform, enemyData.MovementSpeed, _lifeTime);
+		if (!GlobalPoints.Instance.IsInsideBorders(transform.position, 2.0f)) {
+			EventManager.Instance.Death(gameObject.GetInstanceID());
+		}
 	}
 
-	private void OnTriggerEnter2D(Collider2D other)
+	private void Death(int id)
 	{
-		print(name + "'s HP: " + --_currentHitPoints);
+		if (id == gameObject.GetInstanceID()) {
+			var movementComponent = GetComponent<MovementComponent>();
+			movementComponent.StopCoroutine(movementComponent.Coroutine);
+			EventManager.Instance.OnDeath -= Death;
+			PoolManager.Instance.ReleaseObject(gameObject);
+		}
 	}
+	
 
 	#endregion
 }

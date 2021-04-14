@@ -19,7 +19,7 @@ namespace Player
 		private PlayerMovementBehaviour playerMovementBehaviour;
 
 		[SerializeField]
-		private PlayerCombatBehaviour playerCombatBehaviour;
+		private PlayerShootingBehaviour playerShootingBehaviour;
 
 		#endregion Variables
 		
@@ -30,7 +30,7 @@ namespace Player
 			playerInput = GetComponent<UnityEngine.InputSystem.PlayerInput>();
 			playerAnimationBehaviour = GetComponent<PlayerAnimationBehaviour>();
 			playerMovementBehaviour = GetComponent<PlayerMovementBehaviour>();
-			playerCombatBehaviour = GetComponent<PlayerCombatBehaviour>();
+			playerShootingBehaviour = GetComponent<PlayerShootingBehaviour>();
 		}
 
 		#endregion
@@ -56,10 +56,10 @@ namespace Player
 		public void OnShoot(InputAction.CallbackContext ctx)
 		{
 			if (ctx.started) {
-				playerCombatBehaviour.SetShootingMode(true);
+				playerShootingBehaviour.SetShootingMode(true);
 			} 
 			else if (ctx.canceled) {
-				playerCombatBehaviour.SetShootingMode(false);
+				playerShootingBehaviour.SetShootingMode(false);
 			}
 		}
 

@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Mine
   description: 
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   hitPoints: 10
-  movementSpeed: 0.3
-  movementPattern: {fileID: 11400000, guid: 9a483e1dfe6383a4ea49c12a8d5d8955, type: 2}
+  movementSpeed: 5
+  movementPattern: {fileID: 11400000, guid: ea0a26a5c3137124899c6c2af52482ec, type: 2}

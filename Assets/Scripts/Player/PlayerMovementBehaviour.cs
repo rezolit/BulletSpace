@@ -42,21 +42,21 @@ namespace Player
 			);
 			_desiredPlayerPosition = transform.position;
 
-			if (_desiredPlayerPosition.x > Borders.instance.rightBorder.position.x) {
-				_desiredPlayerPosition = new Vector3(Borders.instance.rightBorder.position.x, _desiredPlayerPosition.y,
+			if (_desiredPlayerPosition.x > GlobalPoints.Instance.rightBorder.position.x) {
+				_desiredPlayerPosition = new Vector3(GlobalPoints.Instance.rightBorder.position.x, _desiredPlayerPosition.y,
 					_desiredPlayerPosition.z);
 			}
-			else if (transform.position.x < Borders.instance.leftBorder.position.x) {
-				_desiredPlayerPosition = new Vector3(Borders.instance.leftBorder.position.x, _desiredPlayerPosition.y,
+			else if (transform.position.x < GlobalPoints.Instance.leftBorder.position.x) {
+				_desiredPlayerPosition = new Vector3(GlobalPoints.Instance.leftBorder.position.x, _desiredPlayerPosition.y,
 					_desiredPlayerPosition.z);
 			}
 			
-			if (transform.position.y > Borders.instance.upBorder.position.y) {
-				_desiredPlayerPosition = new Vector3(_desiredPlayerPosition.x, Borders.instance.upBorder.position.y,
+			if (transform.position.y > GlobalPoints.Instance.upBorder.position.y) {
+				_desiredPlayerPosition = new Vector3(_desiredPlayerPosition.x, GlobalPoints.Instance.upBorder.position.y,
 					_desiredPlayerPosition.z);
 			}
-			else if (transform.position.y < Borders.instance.downBorder.position.y) {
-				_desiredPlayerPosition = new Vector3(_desiredPlayerPosition.x, Borders.instance.downBorder.position.y,
+			else if (transform.position.y < GlobalPoints.Instance.downBorder.position.y) {
+				_desiredPlayerPosition = new Vector3(_desiredPlayerPosition.x, GlobalPoints.Instance.downBorder.position.y,
 					_desiredPlayerPosition.z);
 			}
 
