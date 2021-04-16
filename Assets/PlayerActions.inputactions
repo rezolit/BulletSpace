@@ -33,6 +33,17 @@
             "bindings": [
                 {
                     "name": "",
+                    "id": "75cace97-0500-475e-9b66-9e28e19c81af",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "1ff7911a-b2c3-42c4-8499-b190dcfec851",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -233,6 +244,11 @@
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
                     "isOptional": false,
                     "isOR": false
                 }

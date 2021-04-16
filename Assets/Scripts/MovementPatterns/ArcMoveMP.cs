@@ -1,4 +1,5 @@
 using System.Collections;
+using Components;
 using PathCreation;
 using UnityEngine;
 
@@ -10,14 +11,14 @@ namespace MovementPatterns
 		[SerializeField]
 		private PathCreator pathCreator;
 
-		public override IEnumerator MovementBehaviour(Transform transform, float movementSpeed)
+		public override IEnumerator MovementBehaviour(Transform transform, MovementComponent movementComponent)
 		{
-			float lifeTime = 0;
-
+			float distance = 0.0f;
+			
 			while (transform.position != pathCreator.path.GetPoint(pathCreator.path.NumPoints - 1)) {
 				yield return null;
-				lifeTime += Time.deltaTime;
-				transform.position = pathCreator.path.GetPointAtDistance(lifeTime * movementSpeed, EndOfPathInstruction.Stop);
+				distance += Time.deltaTime * movementComponent.MovementSpeed;
+				transform.position = pathCreator.path.GetPointAtDistance(distance, EndOfPathInstruction.Stop);
 			}
 		}
 	}

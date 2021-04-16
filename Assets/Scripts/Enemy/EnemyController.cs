@@ -9,7 +9,7 @@ namespace Enemy
 	/// <summary>
 	/// General class-component for all enemies
 	/// </summary>
-	[RequireComponent(typeof(MovementComponent))]
+	[RequireComponent(typeof(EnemyMovement))]
 	public class EnemyController : MonoBehaviour
 	{
 		#region Fields
@@ -43,13 +43,13 @@ namespace Enemy
 			foreach (EmitterController emitter in _emitters) {
 				emitter.isActive = true;
 			}
-		
+			
 			EventManager.Instance.OnDeath += Death;
 		}
 
 		private void Update()
 		{
-			if (!GlobalPoints.Instance.IsInsideBorders(transform.position, 2.0f)) {
+			if (!GlobalPoints.Instance.IsInsideBorders(transform.position, GlobalPoints.Instance.enemiesOffset)) {
 				EventManager.Instance.Death(gameObject.GetInstanceID());
 			}
 		}
@@ -57,7 +57,7 @@ namespace Enemy
 		private void Death(int id)
 		{
 			if (id == gameObject.GetInstanceID()) {
-				var movementComponent = GetComponent<MovementComponent>();
+				var movementComponent = GetComponent<EnemyMovement>();
 				if (movementComponent.Coroutine != null) {
 					movementComponent.StopCoroutine(movementComponent.Coroutine);
 				}

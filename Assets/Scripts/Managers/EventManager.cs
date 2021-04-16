@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Managers
 {
 	public class EventManager : Singleton<EventManager>

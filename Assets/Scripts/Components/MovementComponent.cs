@@ -1,21 +1,17 @@
+using Managers;
 using MovementPatterns;
 using UnityEngine;
 
 namespace Components
 {
-	public class MovementComponent : MonoBehaviour
+	public abstract class MovementComponent : MonoBehaviour
 	{
 		[SerializeField]
 		private float movementSpeed;
 
-		[SerializeField]
-		private BaseMovementPattern baseMovementPattern;
-
-		public Coroutine Coroutine { get; set; }
-
-		private void OnEnable()
-		{
-			Coroutine = StartCoroutine(baseMovementPattern.MovementBehaviour(transform, movementSpeed));
+		public float MovementSpeed {
+			get => movementSpeed * GameManager.Instance.speedMultiplier;
+			set => movementSpeed = value;
 		}
 	}
 }

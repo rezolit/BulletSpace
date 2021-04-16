@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 3820629424659934711}
   - component: {fileID: 632043119161751441}
   - component: {fileID: -6460092607433025457}
-  - component: {fileID: 1636657930}
   - component: {fileID: 6847896887733156823}
+  - component: {fileID: 3857816007480375965}
+  - component: {fileID: -6272122155453514315}
   m_Layer: 0
   m_Name: Enemy_Bomber
   m_TagString: Enemy
@@ -113,8 +114,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d091c1d5767774b4b92be614fe106549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitPoints: 1
-  _currentHitPoints: 0
+  maxHitPoints: 4
+  currentHitPoints: 0
   getDamagedFrom: 00000000
 --- !u!50 &632043119161751441
 Rigidbody2D:
@@ -153,20 +154,6 @@ CircleCollider2D:
   m_Offset: {x: 0.02, y: 0.02}
   serializedVersion: 2
   m_Radius: 0.26
---- !u!114 &1636657930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4332426838520853035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63ee0db02daae384ba35d6030f3ad43d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 10
-  baseMovementPattern: {fileID: 11400000, guid: ea0a26a5c3137124899c6c2af52482ec, type: 2}
 --- !u!114 &6847896887733156823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,3 +167,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+--- !u!114 &3857816007480375965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4332426838520853035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2120c5da560d2fa42974840307750451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 3
+  baseMovementPattern: {fileID: 11400000, guid: ea0a26a5c3137124899c6c2af52482ec, type: 2}
+--- !u!114 &-6272122155453514315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4332426838520853035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc57ce4e93ed5d47bd818773fedb33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeEffects: []

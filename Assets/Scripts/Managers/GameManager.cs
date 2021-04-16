@@ -13,6 +13,8 @@ namespace Managers
 		public int currentLevel;
 		public int earnedPoints;
 		public float levelTimer;
+		public float damageMultiplier;
+		public float speedMultiplier;
 
 		#endregion
 
@@ -22,6 +24,8 @@ namespace Managers
 		{
 			earnedPoints = 0;
 			currentLevel = 0;
+			damageMultiplier = 1.0f;
+			speedMultiplier = 1.0f;
 			SetupLevel(currentLevel);
 		}
 

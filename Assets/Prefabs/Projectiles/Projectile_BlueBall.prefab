@@ -63,6 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementDirection: {x: 0, y: 0, z: 0}
   speed: 0
+  minSpeed: 0
   angularSpeed: 0
   acceleration: 0
   angularAcceleraion: 0
@@ -70,6 +71,7 @@ MonoBehaviour:
   jitterAmount: 0
   currentLifetime: 0
   damage: 1
+  projectileType: 2
 --- !u!212 &5648138401488077157
 SpriteRenderer:
   m_ObjectHideFlags: 0

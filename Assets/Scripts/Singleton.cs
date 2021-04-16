@@ -12,6 +12,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 			_instance = gameObject.GetComponent<T>();
 		}
 		else {
+			Destroy(gameObject);
 			Debug.LogError("[Singleton] Second instance of '" + typeof(T) + "' created!");
 		}
 	}

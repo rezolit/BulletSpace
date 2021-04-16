@@ -15,9 +15,9 @@ namespace Components
 		[SerializeField]
 		private int maxHitPoints;
 		public int MaxHitPoints => maxHitPoints;
-
+		
 		[SerializeField]
-		private int _currentHitPoints;
+		private int currentHitPoints;
 
 		[SerializeField] [Tooltip("Who can damage this")]
 		private List<DamageSourceType> getDamagedFrom;
@@ -25,18 +25,19 @@ namespace Components
 		#endregion
 
 		#region Methods
+		
 
 		private void OnEnable()
 		{
-			_currentHitPoints = maxHitPoints;
+			currentHitPoints = maxHitPoints;
 		}
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
 			var projectile = other.GetComponent<Projectile.Projectile>();
 			if (projectile != null) {
-				if (getDamagedFrom.FindIndex((ownerType) => ownerType == projectile.DamageSource) != -1) {
-					GetDamaged(projectile.Damage);
+				if (getDamagedFrom.FindIndex((ownerType) => ownerType == projectile.DamageSource) >= 0) {
+					EffectManager.Instance.ImposeShootEffect(gameObject, projectile);
 					projectile.Deactivate();
 				}
 			}
@@ -48,8 +49,8 @@ namespace Components
 				Debug.Log(gameObject.name + " damaged: " + damageValue);
 			}
 
-			_currentHitPoints -= damageValue;
-			if (_currentHitPoints <= 0) {
+			currentHitPoints -= (int)(damageValue);
+			if (currentHitPoints <= 0) {
 				EventManager.Instance.Death(gameObject.GetInstanceID());
 			}
 		}

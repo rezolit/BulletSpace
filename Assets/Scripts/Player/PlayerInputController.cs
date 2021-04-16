@@ -38,7 +38,7 @@ namespace Player
 		public void OnMovement(InputAction.CallbackContext ctx)
 		{
 			Vector2 inputMovement = ctx.ReadValue<Vector2>();
-			playerMovementBehaviour.movementDirection = new Vector3(inputMovement.x, inputMovement.y, 0.0f);
+			playerMovementBehaviour.MovementDirection = new Vector3(inputMovement.x, inputMovement.y, 0.0f);
 		}
 
 		public void OnSlowDown(InputAction.CallbackContext ctx)

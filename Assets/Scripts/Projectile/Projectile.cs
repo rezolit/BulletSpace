@@ -12,6 +12,13 @@ namespace Projectile
 		Enemy
 	}
 
+	public enum ProjectileType
+	{
+		Red,
+		Green,
+		Blue
+	}
+
 	public class Projectile : MonoBehaviour
 	{
 		#region Fields
@@ -20,6 +27,8 @@ namespace Projectile
 		public Vector3 movementDirection;
 		[HideInInspector]
 		public float speed;
+		[HideInInspector]
+		public float minSpeed;
 		[HideInInspector]
 		public float angularSpeed;
 		[HideInInspector]
@@ -40,6 +49,11 @@ namespace Projectile
 
 		public int Damage => damage;
 
+		[SerializeField]
+		private ProjectileType projectileType;
+
+		public ProjectileType ProjectileType => projectileType;
+
 		#endregion
 
 		#region Methods
@@ -58,9 +72,13 @@ namespace Projectile
 		{
 			currentLifetime += Time.deltaTime;
 			speed *= acceleration;
-			transform.position += movementDirection * (speed * Time.deltaTime);
+			if (speed <= minSpeed) {
+				speed = minSpeed;
+			}
+			// TODO speed
+			transform.position += movementDirection * (speed * GameManager.Instance.speedMultiplier * Time.deltaTime);
 
-			if (!GlobalPoints.Instance.IsInsideBorders(transform.position, 2.0f)) {
+			if (!GlobalPoints.Instance.IsInsideBorders(transform.position, GlobalPoints.Instance.projectilesOffset)) {
 				Deactivate();
 			}
 		}

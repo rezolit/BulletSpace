@@ -10,6 +10,7 @@ namespace ShootingPattern
 	[CreateAssetMenu(menuName = "Combat/Pattern/ForwardSP")]
 	public class ForwardSP : BaseShootingPattern
 	{
+		#region Fields
 
 		[SerializeField]
 		private int projectilesCount;
@@ -23,6 +24,9 @@ namespace ShootingPattern
 		[SerializeField] [Tooltip("How wide the line of fire will be")]
 		private float sourceWidth;
 
+		#endregion
+		
+
 		public override void ShootingBehaviour(
 			Transform emitterTransform,
 			Projectile.Projectile projectilePrefab,
@@ -31,7 +35,6 @@ namespace ShootingPattern
 		{
 			Projectile.Projectile[] projectiles = new Projectile.Projectile[projectilesCount];
 			for (int i = 0; i < projectiles.Length; ++i) {
-				// projectiles[i] = ProjectilesPool.instance.GetProjectile(projectilePrefab);
 				projectiles[i] = PoolManager.Instance.SpawnObject(projectilePrefab.gameObject,
 					emitterTransform.position, Quaternion.identity).GetComponent<Projectile.Projectile>();
 				projectiles[i].gameObject.SetActive(true);

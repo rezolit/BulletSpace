@@ -17,9 +17,9 @@ GameObject:
   - component: {fileID: 5137034508308901094}
   - component: {fileID: 5137034508308901093}
   - component: {fileID: 5137034508308901092}
+  - component: {fileID: 5137034508308901116}
   - component: {fileID: 5137034508308901099}
   - component: {fileID: 5137034508308901098}
-  - component: {fileID: 5137034508308901116}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -281,6 +281,18 @@ MonoBehaviour:
   maxHitPoints: 3
   _currentHitPoints: 0
   getDamagedFrom: 01000000
+--- !u!114 &5137034508308901116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5137034508308901097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6a815d28ff25b48b53e7c1f70ea3e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!58 &5137034508308901099
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -318,18 +330,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5137034508308901116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5137034508308901097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba6a815d28ff25b48b53e7c1f70ea3e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5137034510216880089
 GameObject:
   m_ObjectHideFlags: 0

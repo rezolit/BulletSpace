@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 5953491623504482778}
   - component: {fileID: 5953491623504482779}
   - component: {fileID: 2010322790}
+  - component: {fileID: 1990183420}
   m_Layer: 0
   m_Name: ----------MANAGERS----------------
   m_TagString: Untagged
@@ -137,3 +138,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65eef60bc95c062459c88ba9c501c575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1990183420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5953491623504482776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d63576fde8f66844ae74a433ac39cd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globalGlobalEffects:
+  - {fileID: 11400000, guid: 4da42c10847ac034cb6cbd7597e4af8e, type: 2}
+  _damageMultiplier: 1
+  _speedMultiplier: 1
+  timeBetweenNewEffects: 2

@@ -30,6 +30,9 @@ namespace Managers
 		public Transform upperLeftMid;
 		public Transform upperRightMid;
 
+		public float enemiesOffset;
+		public float projectilesOffset;
+
 		#endregion
 
 		#region Methods

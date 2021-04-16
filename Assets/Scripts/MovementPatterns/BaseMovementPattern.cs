@@ -1,4 +1,5 @@
 using System.Collections;
+using Components;
 using UnityEngine;
 
 namespace MovementPatterns
@@ -13,8 +14,8 @@ namespace MovementPatterns
 		/// Movement method that should call with StartCoroutine()
 		/// </summary>
 		/// <param name="transform">Transform that will be moved with method</param>
-		/// <param name="movementSpeed"></param>
+		/// <param name="movementComponent">Movement component of target</param>
 		/// <returns></returns>
-		public abstract IEnumerator MovementBehaviour(Transform transform, float movementSpeed);
+		public abstract IEnumerator MovementBehaviour(Transform transform, MovementComponent movementComponent);
 	}
 }
