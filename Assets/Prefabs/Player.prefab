@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 5137034508308901116}
   - component: {fileID: 5137034508308901099}
   - component: {fileID: 5137034508308901098}
+  - component: {fileID: 8415683108537791716}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -230587871185427975, guid: 1d2eded6d3783124bb1f49f3e6814fd8, type: 3}
+  m_Sprite: {fileID: 3345508739736421500, guid: b211aab4a68a06542b0b6c4c104c9d46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,7 +104,7 @@ Animator:
   m_GameObject: {fileID: 5137034508308901097}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: da60612e79a90d34d8b58ae0a0882fb3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 89b281792526c7e43a6ef540dfd854de, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -201,6 +202,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 386ee70e-c343-4208-9b8b-605acefb1c50
     m_ActionName: PlayerControls/Slow[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5137034508308901088}
+        m_TargetAssemblyTypeName: Player.PlayerInputController, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d457d8a2-00e6-41c7-9c3b-82ee4cba8ad7
+    m_ActionName: PlayerControls/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControls
@@ -234,10 +251,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60916173f38cac241b53c97c28c14c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
+  movementSpeed: 5
+  lookAtMouse: 1
+  _camera: {fileID: 0}
+  canMove: 1
   slowSpeedModifier: 0.5
-  movementDirection: {x: 0, y: 0, z: 0}
   isSlowedDown: 0
+  defaultMovemenetSpeed: 5
 --- !u!114 &5137034508308901094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +286,9 @@ MonoBehaviour:
   emitterController: {fileID: 0}
   allowedEmitters:
   - {fileID: 11400000, guid: d560ba5eb9d358244aaf9ea27fabe5d3, type: 2}
+  - {fileID: 11400000, guid: e20e7c7d0ba8d2a4aa53c59b1d9c6cf5, type: 2}
+  - {fileID: 11400000, guid: 2826bb8dc05f3d240970308970edbe21, type: 2}
+  timeToNextEmitter: 60
 --- !u!114 &5137034508308901092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,8 +301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d091c1d5767774b4b92be614fe106549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitPoints: 3
-  _currentHitPoints: 0
+  maxHitPoints: 6
+  currentHitPoints: 0
   getDamagedFrom: 01000000
 --- !u!114 &5137034508308901116
 MonoBehaviour:
@@ -293,6 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba6a815d28ff25b48b53e7c1f70ea3e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthComponent: {fileID: 0}
 --- !u!58 &5137034508308901099
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -330,6 +354,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8415683108537791716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5137034508308901097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc57ce4e93ed5d47bd818773fedb33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeEffects: []
 --- !u!1 &5137034510216880089
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdea7c55865fb9a41b3aab05861e9b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeOffset: 0
   emitterData: {fileID: 0}
   isActive: 0
   emitterDamageSource: 0

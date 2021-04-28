@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -37,34 +38,42 @@ namespace Player
 
 		public void OnMovement(InputAction.CallbackContext ctx)
 		{
-			Vector2 inputMovement = ctx.ReadValue<Vector2>();
-			playerMovementBehaviour.MovementDirection = new Vector3(inputMovement.x, inputMovement.y, 0.0f);
+			if (!GameManager.Instance.isGamePaused) {
+				Vector2 inputMovement = ctx.ReadValue<Vector2>();
+				playerMovementBehaviour.MovementDirection = new Vector3(inputMovement.x, inputMovement.y, 0.0f);
+			}
 		}
 
 		public void OnSlowDown(InputAction.CallbackContext ctx)
 		{
-			if (ctx.started) {
-				playerMovementBehaviour.isSlowedDown = true;
-			}
-			else if (ctx.canceled) {
-				playerMovementBehaviour.isSlowedDown = false;
+			if (!GameManager.Instance.isGamePaused) {
+				if (ctx.started) {
+					playerMovementBehaviour.isSlowedDown = true;
+				}
+				else if (ctx.canceled) {
+					playerMovementBehaviour.isSlowedDown = false;
+				}
 			}
 		}
 
 		public void OnShoot(InputAction.CallbackContext ctx)
 		{
-			if (ctx.started) {
-				playerShootingBehaviour.SetShootingMode(true);
-			} 
-			else if (ctx.canceled) {
-				playerShootingBehaviour.SetShootingMode(false);
+			if (!GameManager.Instance.isGamePaused) {
+				if (ctx.started) {
+					playerShootingBehaviour.SetShootingMode(true);
+				}
+				else if (ctx.canceled) {
+					playerShootingBehaviour.SetShootingMode(false);
+				}
 			}
 		}
 
 		public void OnPause(InputAction.CallbackContext ctx)
 		{
 			if (ctx.started) {
-				print("Pause");
+				EventManager.Instance.ChangeGameState(!GameManager.Instance.isGamePaused
+					? GameState.Pause
+					: GameState.Continue);
 			}
 		}
 

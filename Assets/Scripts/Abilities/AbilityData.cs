@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Abilities
 {
-	[CreateAssetMenu(fileName = "New Ability", menuName = "Combat/Ability", order = 53)]
+	[CreateAssetMenu(fileName = "New Ability", menuName = "BulletHell/Combat/Ability", order = 53)]
 	public class AbilityData : ScriptableObject
 	{
 		#region Fields

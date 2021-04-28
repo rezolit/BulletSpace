@@ -10,11 +10,15 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 	{
 		if (!_instance) {
 			_instance = gameObject.GetComponent<T>();
+			if (!_instance) {
+				Debug.Log("Not found instance");
+			}
 		}
 		else {
-			Destroy(gameObject);
-			Debug.LogError("[Singleton] Second instance of '" + typeof(T) + "' created!");
+			// Destroy(gameObject);
+			Debug.Log("[Singleton] Second instance of '" + typeof(T) + "' created!");
 		}
+		DontDestroyOnLoad(gameObject);
 	}
 
 	public static T Instance {

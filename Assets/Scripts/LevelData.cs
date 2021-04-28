@@ -17,7 +17,7 @@ public struct EnemiesWave
 	public float spawnTime;
 } 
 
-[CreateAssetMenu(fileName = "New Level Data", menuName = "Level", order = 54)]
+[CreateAssetMenu(fileName = "New Level Data", menuName = "BulletHell/Level", order = 54)]
 public class LevelData : ScriptableObject
 {
 	#region Fields

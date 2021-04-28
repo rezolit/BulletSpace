@@ -16,9 +16,11 @@ namespace Projectile
 	{
 		Red,
 		Green,
-		Blue
+		Blue,
+		Yellow
 	}
 
+	[RequireComponent(typeof(Animator))]
 	public class Projectile : MonoBehaviour
 	{
 		#region Fields
@@ -51,6 +53,7 @@ namespace Projectile
 
 		[SerializeField]
 		private ProjectileType projectileType;
+		private static readonly int OnExplosion = Animator.StringToHash("OnExplosion");
 
 		public ProjectileType ProjectileType => projectileType;
 
@@ -79,6 +82,17 @@ namespace Projectile
 			transform.position += movementDirection * (speed * GameManager.Instance.speedMultiplier * Time.deltaTime);
 
 			if (!GlobalPoints.Instance.IsInsideBorders(transform.position, GlobalPoints.Instance.projectilesOffset)) {
+				Deactivate();
+			}
+		}
+
+		public void Explode()
+		{
+			var animator = GetComponent<Animator>();
+			if (animator.runtimeAnimatorController != null) {
+				animator.SetTrigger(OnExplosion);
+			}
+			else {
 				Deactivate();
 			}
 		}

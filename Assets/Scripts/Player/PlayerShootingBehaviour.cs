@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Emitter;
+using Managers;
 using UnityEngine;
 
 namespace Player
@@ -18,6 +19,13 @@ namespace Player
 		[SerializeField] [Tooltip("All allowed emitters for player")]
 		private List<EmitterData> allowedEmitters;
 
+		[SerializeField]
+		private float timeToNextEmitter;
+
+		private float _timer;
+
+		private int currentEmitterNum;
+
 		#endregion
 
 		#region Methods
@@ -28,7 +36,28 @@ namespace Player
 			if (emitterController == null) {
 				throw new Exception("Add allowed emitters to player");
 			}
+		}
+
+		private void Start()
+		{
+			Init();
+
+			EventManager.Instance.OnGameStart += Init;
+		}
+
+		private void Init()
+		{
+			currentEmitterNum = 0;
+			_timer = timeToNextEmitter;
 			emitterController.EmitterData = allowedEmitters[0];
+		}
+
+		private void Update()
+		{
+			if (GameManager.Instance.levelTimer >= _timer 
+			    && currentEmitterNum < allowedEmitters.Count - 1) {
+				emitterController.EmitterData = allowedEmitters[++currentEmitterNum];
+			}
 		}
 
 		public void SetShootingMode(bool isShooting)

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Emitter
 {
-	[CreateAssetMenu(fileName = "New Emitter", menuName = "Combat/Emitter", order = 51)]
+	[CreateAssetMenu(fileName = "New Emitter", menuName = "BulletHell/Combat/Emitter", order = 51)]
 	public class EmitterData : ScriptableObject
 	{
 		#region Fields

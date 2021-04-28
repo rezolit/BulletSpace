@@ -7,7 +7,7 @@ namespace ShootingPattern
 	/// <summary>
 	/// Shooting in a straight line pattern
 	/// </summary>
-	[CreateAssetMenu(menuName = "Combat/Pattern/ForwardSP")]
+	[CreateAssetMenu(menuName = "BulletHell/Combat/Pattern/ForwardSP")]
 	public class ForwardSP : BaseShootingPattern
 	{
 		#region Fields
@@ -36,7 +36,7 @@ namespace ShootingPattern
 			Projectile.Projectile[] projectiles = new Projectile.Projectile[projectilesCount];
 			for (int i = 0; i < projectiles.Length; ++i) {
 				projectiles[i] = PoolManager.Instance.SpawnObject(projectilePrefab.gameObject,
-					emitterTransform.position, Quaternion.identity).GetComponent<Projectile.Projectile>();
+					emitterTransform.position, emitterTransform.rotation).GetComponent<Projectile.Projectile>();
 				projectiles[i].gameObject.SetActive(true);
 				projectiles[i].speed = projectilesSpeed;
 				projectiles[i].acceleration = projectilesAcceleration;

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: TestField
   m_EditorClassIdentifier: 
   levelName: TestField
-  levelImage: {fileID: 0}
+  levelImage: {fileID: -4385901911928636727, guid: bad088f25d807a3469710dde2b19e298, type: 3}
   enemiesWaves:
   - enemies:
     - spawnPointType: 2
-      enemyController: {fileID: 5811356625813748763, guid: 01708126776625b4d8e2b5de3a51f8d7, type: 3}
-    spawnTime: 0
+      enemyController: {fileID: 7613110986020497079, guid: c389085604c596140bb4df8122403ccc, type: 3}
+    spawnTime: 1

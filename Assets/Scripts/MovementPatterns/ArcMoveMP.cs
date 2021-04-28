@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MovementPatterns
 {
-	[CreateAssetMenu(fileName = "New MovementPattern", menuName = "MovementPattern/ArcMoveMP", order = 53)]
+	[CreateAssetMenu(fileName = "New MovementPattern", menuName = "BulletHell/MovementPattern/ArcMoveMP", order = 53)]
 	public class ArcMoveMP : BaseMovementPattern
 	{
 		[SerializeField]

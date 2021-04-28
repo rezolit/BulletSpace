@@ -1,4 +1,5 @@
 using System;
+using Components;
 using Managers;
 using UnityEngine;
 
@@ -6,27 +7,49 @@ namespace Player
 {
 	public class PlayerController : MonoBehaviour
 	{
+		[SerializeField]
+		private HealthComponent healthComponent;
+
 		private void Start()
 		{
-			if (EventManager.Instance == null) {
-				print("null");
-			}
+			healthComponent = GetComponent<HealthComponent>();
+			Init();
+			
 			EventManager.Instance.OnDeath += Death;
+			EventManager.Instance.OnGameStart += Init;
 		}
 
-		private void Death(int id)
+		private void Init()
 		{
-			if (id == gameObject.GetInstanceID()) {
-				EventManager.Instance.OnDeath -= Death;
+			gameObject.SetActive(true);
+			EventManager.Instance.PlayerHealthChange(healthComponent.MaxHitPoints, 
+				Mathf.Clamp(healthComponent.MaxHitPoints, 0, healthComponent.MaxHitPoints));
+		}
 
+		public void Death(int id)
+		{
+			if (id == gameObject.GetInstanceID()) {	
+				
+				var effectComponent = GetComponent<EffectComponent>();
+				if (effectComponent.Coroutines.Count != 0) {
+					foreach (Coroutine coroutine in effectComponent.Coroutines) {
+						if (coroutine != null) {
+							effectComponent.StopCoroutine(coroutine);
+						}
+					}
+					effectComponent.Coroutines.Clear();
+				}
+				
+				EventManager.Instance.OnDeath -= Death;
+				
 				if (DebugManager.Instance.IsLogDeath) {
 					Debug.Log("Death for " + gameObject.name);
 				}
-				
-				Destroy(gameObject);
+				EventManager.Instance.PlayerDeath();
+				gameObject.SetActive(false);
 			}
 			else {
-				print("Enemy killed");
+				// Enemy killed logic
 			}
 		}
 	}

@@ -12,6 +12,13 @@ namespace Managers
 		/// </summary>
 		[SerializeField]
 		private bool isLogDamage;
+		
+		/// <summary>
+		/// Should log info about all applies effects
+		/// </summary>
+		/// <returns></returns>
+		[SerializeField]
+		private bool isLogEffects;
 
 		/// <summary>
 		/// Should log death's to console
@@ -52,6 +59,8 @@ namespace Managers
 		public bool IsLogSpawnInfo => isLogSpawnInfo;
 
 		public bool IsLogSingletonInfo => isLogSingletonInfo;
+
+		public bool IsLogEffects => isLogEffects;
 		
 		
 	}

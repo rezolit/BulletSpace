@@ -1,3 +1,4 @@
+using Managers;
 using Projectile;
 using UnityEngine;
 
@@ -6,10 +7,14 @@ namespace Emitter
 	/// <summary>
 	/// Class for all emitters
 	/// </summary>
+	[RequireComponent(typeof(SpriteRenderer))]
 	public class EmitterController : MonoBehaviour
 	{
 		#region Fields
 
+		[SerializeField]
+		private float timeOffset;
+		
 		[SerializeField]
 		private EmitterData emitterData;
 		public EmitterData EmitterData {
@@ -19,8 +24,8 @@ namespace Emitter
 				GetComponent<SpriteRenderer>().sprite = EmitterData.EmitterSprite;
 			}
 		}
-
-		[HideInInspector]
+		
+		
 		public bool isActive;
 
 		private float _lastShootTime;
@@ -34,14 +39,27 @@ namespace Emitter
 
 		private void Start()
 		{
-			_lastShootTime = 0.0f;
+			EventManager.Instance.OnGameStart += Init;
+		}
+
+		private void Init()
+		{
+			_lastShootTime = timeOffset;
 		}
 
 		private void Update()
 		{
-			if (isActive && _lastShootTime < Time.time - 1.0f / EmitterData.SpawnRate) {
+			if (isActive && _lastShootTime < GameManager.Instance.levelTimer - 1.0f / EmitterData.SpawnRate) {
 				emitterData.Pattern.ShootingBehaviour(transform, emitterData.ProjectilePrefab, emitterDamageSource);
-				_lastShootTime = Time.time;
+				_lastShootTime = GameManager.Instance.levelTimer;
+
+				if (emitterDamageSource == DamageSourceType.Enemy) {
+					EventManager.Instance.EnemyShoot();
+				}
+
+				if (emitterDamageSource == DamageSourceType.Player) {
+					EventManager.Instance.PlayerShoot();
+				}
 			}
 		}
 

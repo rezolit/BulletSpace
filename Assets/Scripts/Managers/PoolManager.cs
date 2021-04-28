@@ -26,6 +26,16 @@ namespace Managers
 
 		private void Awake () 
 		{
+			Init();
+			EventManager.Instance.OnGameStart += Init;
+		}
+
+		private void Init()
+		{
+			foreach (Transform child in root) {
+				ReleaseObject(child.gameObject);
+			}
+			
 			_prefabLookup = new Dictionary<GameObject, ObjectPool<GameObject>>();
 			_instanceLookup = new Dictionary<GameObject, ObjectPool<GameObject>>();
 		}

@@ -5,19 +5,19 @@ using UnityEngine.SocialPlatforms;
 
 namespace ShootingPattern
 {
-	[CreateAssetMenu(menuName = "Combat/Pattern/RadialSP")]
+	[CreateAssetMenu(menuName = "BulletHell/Combat/Pattern/RadialSP")]
 	public class RadialSP : BaseShootingPattern
 	{
 		#region Fields
 
 		[Header("Projectiles")]
-		[SerializeField] [Range(0, 10)]
+		[SerializeField] [Range(0, 64)]
 		private int projectilesCount;
 		
 		[SerializeField] [Range(0.0f, 20.0f)]
 		private float projectilesSpeed;
 
-		[SerializeField] [Range(0.0f, 1.0f)]
+		[SerializeField] [Range(0.0f, 2.0f)]
 		private float projectilesAcceleration;
 		
 		[SerializeField] [Range(0.0f, 10.0f)]
@@ -38,10 +38,10 @@ namespace ShootingPattern
 		private float arraySpread;
 
 		[Header("Spin")]
-		[SerializeField] [Range(-10, 10)]
+		[SerializeField] [Range(-100.0f, 100.0f)]
 		private float spinSpeed;
 
-		[SerializeField] [Range(0, 1)]
+		[SerializeField] [Range(0.0f, 2.0f)]
 		private float directionChangeSpeed;
 		
 		#endregion
@@ -54,21 +54,21 @@ namespace ShootingPattern
 		{
 			for (int i = 0; i < arraysCount; i++) {
 				Projectile.Projectile[] projectiles = new Projectile.Projectile[projectilesCount];
-				var startAngle = arraySpread * i;
+				var startAngle = arraySpread * (i + 1);
 				var deltaAngle = (angleTo - angleFrom) / (projectilesCount == 1 ? 1 : projectilesCount - 1);
 				for (int j = 0; j < projectiles.Length; ++j) {
-					var directionAngle = startAngle + j * deltaAngle;
-					var modifiedAngle =
-						Mathf.Deg2Rad * directionAngle +
-						(Mathf.Sin(Time.time * directionChangeSpeed) * spinSpeed)
-					;
-					Vector3 directionVector = new Vector3(
-						Mathf.Sin(modifiedAngle),
-						Mathf.Cos(modifiedAngle),
+					var directionAngle = startAngle + j * deltaAngle + 
+					                     (Mathf.Sin(Time.time * directionChangeSpeed) * spinSpeed);
+					var angleInRad =
+						Mathf.Deg2Rad * directionAngle;
+						Vector3 directionVector = new Vector3(
+						Mathf.Sin(angleInRad),
+						Mathf.Cos(angleInRad),
 						0
 					);
 					projectiles[j] = PoolManager.Instance.SpawnObject(projectilePrefab.gameObject,
-						emitterTransform.position, Quaternion.identity).GetComponent<Projectile.Projectile>();
+						emitterTransform.position, Quaternion.Euler(0.0f, 0.0f, -directionAngle))
+						.GetComponent<Projectile.Projectile>();
 					projectiles[j].gameObject.SetActive(true);
 					projectiles[j].speed = projectilesSpeed;
 					projectiles[j].minSpeed = projectilesMinSpeed;

@@ -1,58 +1,113 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Components;
 using Effect;
+using Projectile;
 using UnityEngine;
+using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
 
 namespace Managers
 {
+	public enum BonusType
+	{
+		Nothing,
+		X2Damage,
+		SlowTime,
+		MeteorRain,
+		SlowSpeed,
+		SpeedUp,
+		Drunk
+	}
+	
+	
 	public class EffectManager : Singleton<EffectManager>
 	{
 		#region Fields
 
 		[SerializeField]
-		private List<EffectBase> globalGlobalEffects;
+		private List<EffectBase> possibleGlobalEffect;
+
+		[SerializeField]
+		private EffectBase currentGlobalEffect;
 
 		[SerializeField]
 		private float timeBetweenNewEffects;
 
 		[SerializeField]
-		private List<EffectBase> projectilesEffects;
+		private EffectBase startEffect;
+		
+		[SerializeField]
+		private List<EffectBase> possibleProjectileEffects;
+		
+		[SerializeField]
+		private SerializedDictionary<ProjectileType, EffectBase> projectileEffects;
 
 		private float _timer;
 		
 		#endregion
 
 		#region Methods
-		
-		public List<EffectBase> GlobalEffects {
-			get => globalGlobalEffects;
-			set => globalGlobalEffects = value;
+
+		private List<EffectBase> PossibleGlobalEffects {
+			get => possibleGlobalEffect;
+			set => possibleGlobalEffect = value;
 		}
 		
 		private void Start()
 		{
-			_timer = 0.0f;
-			
+			Init();
+
+			EventManager.Instance.OnGameStart += Init;
 		}
 
 		private void Update()
 		{
 			_timer += Time.deltaTime;
 			if (_timer >= timeBetweenNewEffects) {
-				ApplyNewEffect(GameManager.Instance.gameObject, RandomGlobalEffect());
+				
+				// GLOBAL EFFECT
+				currentGlobalEffect = NewRandomGlobalEffect();
+				ApplyNewEffect(GameManager.Instance.gameObject, currentGlobalEffect);
+				
+				//PROJECTILE EFFECTS
+				var availableEffects = new List<EffectBase>();
+				foreach (EffectBase effect in possibleProjectileEffects) {
+					availableEffects.Add(effect);
+				}
+
+				EffectBase newRandomEffect = availableEffects[Random.Range(0, availableEffects.Count)];
+				projectileEffects[ProjectileType.Red] = newRandomEffect;
+				availableEffects.Remove(newRandomEffect);
+				
+				newRandomEffect = availableEffects[Random.Range(0, availableEffects.Count)];
+				projectileEffects[ProjectileType.Green] = newRandomEffect;
+				availableEffects.Remove(newRandomEffect);
+				
+				newRandomEffect = availableEffects[Random.Range(0, availableEffects.Count)];
+				projectileEffects[ProjectileType.Blue] = newRandomEffect;
+				availableEffects.Remove(newRandomEffect);
+				
+				EventManager.Instance.BonusesChangeNotify(
+					projectileEffects[ProjectileType.Red].bonusType,
+					projectileEffects[ProjectileType.Green].bonusType,
+					projectileEffects[ProjectileType.Blue].bonusType,
+					currentGlobalEffect.bonusType
+				);
+
 				_timer = 0.0f;
 			}
 		}
 
-		private EffectBase RandomGlobalEffect()
+		private EffectBase NewRandomGlobalEffect()
 		{
-			if (GlobalEffects.Count <= 0) {
-				Debug.LogError("Add Global effects to List in " + gameObject.name);
+			if (PossibleGlobalEffects.Count <= 0) {
+				Debug.LogError("Add Global effects to List in " + name);
 			}
-			var newEffect = GlobalEffects[Random.Range(0, GlobalEffects.Count - 1)];
+
+			EffectBase newEffect;
+			do {
+				newEffect = PossibleGlobalEffects[Random.Range(0, PossibleGlobalEffects.Count)];
+			} while (newEffect == currentGlobalEffect);
 
 			return newEffect;
 		}
@@ -60,8 +115,6 @@ namespace Managers
 		// TODO избавиться от привязанности к GameManager и сделать глобальные эффекты универсальнее
 		private void ApplyNewEffect(GameObject target, EffectBase effect)
 		{
-			var effectComp = target.GetComponent<EffectComponent>();
-
 			if (target != GameManager.Instance.gameObject) {
 				var effectComponent = target.GetComponent<EffectComponent>();
 				if (effectComponent) {
@@ -72,20 +125,47 @@ namespace Managers
 				StartCoroutine( effect.EffectBehaviour(GameManager.Instance.gameObject));
 			}
 
-
-			Debug.Log("New effect: " + effect.name + " on target " + target.name);
+			if (DebugManager.Instance.IsLogEffects) {
+				Debug.Log("New effect: " + effect.name + " on target " + target.name);
+			}
+			
 			effect.isActive = true;
 		}
 
 		public void ImposeShootEffect(GameObject target, Projectile.Projectile instigator)
 		{
-			target.GetComponent<HealthComponent>().
+			target.GetComponent<HealthComponent>()?.
 				GetDamaged((int)(instigator.Damage * GameManager.Instance.damageMultiplier));
-			ApplyNewEffect(target, projectilesEffects[0]);
+			ApplyNewEffect(target, projectileEffects[instigator.ProjectileType]);
+		}
+		
+		private void Init()
+		{
+			StopAllCoroutines();
+			
+			_timer = 0.0f;
+
+			if (possibleProjectileEffects.Count == 0) {
+				Debug.LogError("Add PossibleProjectileEffects in " + name);
+			}
+
+			projectileEffects = new SerializedDictionary<ProjectileType, EffectBase> {
+				[ProjectileType.Red] = startEffect,
+				[ProjectileType.Green] = startEffect,
+				[ProjectileType.Blue] = startEffect,
+				[ProjectileType.Yellow] = startEffect
+			};
+
+			currentGlobalEffect = startEffect;
+			
+			EventManager.Instance.BonusesChangeNotify(
+				projectileEffects[ProjectileType.Red].bonusType,
+				projectileEffects[ProjectileType.Green].bonusType,
+				projectileEffects[ProjectileType.Blue].bonusType,
+				currentGlobalEffect.bonusType
+			);
 		}
 
 		#endregion
-
-
 	}
 }

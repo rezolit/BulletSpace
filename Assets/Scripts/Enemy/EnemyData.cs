@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Enemy
 {
-	[CreateAssetMenu(fileName = "New Enemy", menuName = "Enemy/Enemy", order = 51)]
+	[CreateAssetMenu(fileName = "New Enemy", menuName = "BulletHell/Enemy/Enemy", order = 51)]
 	public class EnemyData : ScriptableObject
 	{
 		#region Fields

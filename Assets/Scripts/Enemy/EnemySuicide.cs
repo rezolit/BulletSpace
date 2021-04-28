@@ -13,7 +13,6 @@ namespace Enemy
 
 		private void OnCollisionEnter2D(Collision2D other)
 		{
-			Debug.Log(other.gameObject.name);
 			var player = other.gameObject.GetComponent<PlayerController>();
 			if (player != null) {
 				player.GetComponent<HealthComponent>().GetDamaged(damage);

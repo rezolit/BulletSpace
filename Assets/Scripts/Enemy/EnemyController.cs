@@ -9,7 +9,11 @@ namespace Enemy
 	/// <summary>
 	/// General class-component for all enemies
 	/// </summary>
-	[RequireComponent(typeof(EnemyMovement))]
+	[RequireComponent(
+		typeof(EnemyMovement),
+		typeof(HealthComponent),
+		typeof(EffectComponent))
+	]
 	public class EnemyController : MonoBehaviour
 	{
 		#region Fields
@@ -61,13 +65,27 @@ namespace Enemy
 				if (movementComponent.Coroutine != null) {
 					movementComponent.StopCoroutine(movementComponent.Coroutine);
 				}
+				
+				var effectComponent = GetComponent<EffectComponent>();
+				if (effectComponent.Coroutines.Count != 0) {
+					foreach (Coroutine coroutine in effectComponent.Coroutines) {
+						if (coroutine != null) {
+							effectComponent.StopCoroutine(coroutine);
+						}
+					}
+					effectComponent.Coroutines.Clear();
+				}
 
 				EventManager.Instance.OnDeath -= Death;
 				
 				if (DebugManager.Instance.IsLogDeath) {
 					Debug.Log("Death for object " + gameObject.name);
 				}
-					
+
+				if (gameObject.tag == "Boss") {
+					EventManager.Instance.BossKilled();
+				}
+				
 				PoolManager.Instance.ReleaseObject(gameObject);
 			}
 		}

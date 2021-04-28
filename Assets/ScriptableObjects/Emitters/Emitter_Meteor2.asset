@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 878b28de99f613f4cb44fde0f63cbdb9, type: 3}
+  m_Name: Emitter_Meteor2
+  m_EditorClassIdentifier: 
+  emitterName: 
+  description: 
+  emitterSprite: {fileID: 0}
+  spawnRate: 0.3
+  pattern: {fileID: 11400000, guid: f37171907931c734ab1bf144beb278d8, type: 2}
+  projectilePrefab: {fileID: 8044924784044171771, guid: 764b9d29738efa74ea1d140a2470cd6b, type: 3}

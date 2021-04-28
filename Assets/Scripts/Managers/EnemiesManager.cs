@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Managers
 {
-	public class EnemiesManager : Singleton<EnemiesManager>
+	public class EnemiesManager : Singleton<EventManager>
 	{
 		#region Fields
 	
@@ -13,6 +13,13 @@ namespace Managers
 		#region Methods
 
 		private void Start()
+		{
+			Init();
+
+			EventManager.Instance.OnGameStart += Init;
+		}
+
+		private void Init()
 		{
 			_step = 0;
 		}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MovementPatterns
 {
-	[CreateAssetMenu(fileName = "New MovementPattern", menuName = "MovementPattern/ForwardMP", order = 52)]
+	[CreateAssetMenu(fileName = "New MovementPattern", menuName = "BulletHell/MovementPattern/ForwardMP", order = 52)]
 	public class ForwardMoveMP : BaseMovementPattern
 	{
 		public override IEnumerator MovementBehaviour(Transform transform,  MovementComponent movementComponent)

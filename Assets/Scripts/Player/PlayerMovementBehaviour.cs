@@ -27,6 +27,11 @@ namespace Player
 
 		[HideInInspector]
 		public bool    isSlowedDown;
+
+		private bool   _isDrunk;
+
+		[SerializeField]
+		private float defaultMovemenetSpeed;
 		
 
 		#endregion
@@ -43,29 +48,39 @@ namespace Player
 			if (!_camera) {
 				_camera = Camera.main;
 			}
+			
+			Init();
+
+			EventManager.Instance.OnGameStart += Init;
+		}
+
+		private void Init()
+		{
+			MovementSpeed = defaultMovemenetSpeed;
+			isSlowedDown = false;
+			_isDrunk = false;
 		}
 
 		private void Update()
 		{
-			if (canMove) {
-				Move();
-			}
+			MovementSpeed = defaultMovemenetSpeed * GameManager.Instance.speedMultiplier;
+			
+			if (!GameManager.Instance.isGamePaused) {
+				if (canMove) {
+					Move();
+				}
 
-			if (lookAtMouse) {
-				RotateToMouse();
+				if (lookAtMouse) {
+					RotateToMouse();
+				}
 			}
 		}
 
 		private void Move()
 		{
-			// TODO speed
-			_desiredPlayerPosition =
-				(Vector2)(transform.position +
-				          _movementDirection * 
-							(MovementSpeed *
-							 (isSlowedDown ? slowSpeedModifier : 1.0f) *
-							 Time.deltaTime)
-				);
+			_desiredPlayerPosition = transform.position + _movementDirection * 
+				((_isDrunk ? -1 : 1) * (MovementSpeed * (isSlowedDown ? slowSpeedModifier : 1.0f) * Time.deltaTime));
+			
 			
 			if (_desiredPlayerPosition.x > GlobalPoints.Instance.rightBorder.position.x) {
 				_desiredPlayerPosition = 
@@ -90,7 +105,7 @@ namespace Player
 		
 		private void RotateToMouse()
 		{
-			Vector2 mousePosition = _camera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+			Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 			Vector2 playerPosition = new Vector2(transform.position.x, transform.position.y);
  
 			Vector2 directionVector = new Vector2(
@@ -106,6 +121,11 @@ namespace Player
 			);
  
 			transform.rotation = aimRotation;
+		}
+		
+		public void ToggleIsDrunk(bool isDrunk)
+		{
+			_isDrunk = isDrunk;
 		}
 
 		#endregion
