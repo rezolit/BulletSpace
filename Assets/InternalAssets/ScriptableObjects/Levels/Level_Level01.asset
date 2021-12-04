@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2844957bee804024585966cea3e490c4, type: 3}
+  m_Name: Level_Level01
+  m_EditorClassIdentifier: 
+  levelName: Level01
+  levelImage: {fileID: 21300000, guid: 3f2b14ffe2acc16429e252da6a885297, type: 3}
+  enemiesWaves:
+  - enemies:
+    - spawnPointType: 2
+      enemyController: {fileID: 185033657274521444, guid: d5b144c30591c5d4d920e16bf5a7a594, type: 3}
+    - spawnPointType: 2
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    spawnTime: 5
+  - enemies:
+    - spawnPointType: 0
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    - spawnPointType: 0
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    - spawnPointType: 3
+      enemyController: {fileID: 185033657274521444, guid: d5b144c30591c5d4d920e16bf5a7a594, type: 3}
+    spawnTime: 20
+  - enemies:
+    - spawnPointType: 2
+      enemyController: {fileID: 185033657274521444, guid: d5b144c30591c5d4d920e16bf5a7a594, type: 3}
+    - spawnPointType: 3
+      enemyController: {fileID: 185033657274521444, guid: d5b144c30591c5d4d920e16bf5a7a594, type: 3}
+    spawnTime: 25
+  - enemies:
+    - spawnPointType: 2
+      enemyController: {fileID: 185033657274521444, guid: d5b144c30591c5d4d920e16bf5a7a594, type: 3}
+    - spawnPointType: 2
+      enemyController: {fileID: 185033657274521444, guid: d5b144c30591c5d4d920e16bf5a7a594, type: 3}
+    spawnTime: 40
+  - enemies:
+    - spawnPointType: 0
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    - spawnPointType: 0
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    spawnTime: 42
+  - enemies:
+    - spawnPointType: 3
+      enemyController: {fileID: 185033657274521444, guid: d5b144c30591c5d4d920e16bf5a7a594, type: 3}
+    - spawnPointType: 4
+      enemyController: {fileID: 185033657274521444, guid: d5b144c30591c5d4d920e16bf5a7a594, type: 3}
+    spawnTime: 55
+  - enemies:
+    - spawnPointType: 2
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    - spawnPointType: 2
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    spawnTime: 60
+  - enemies:
+    - spawnPointType: 2
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    - spawnPointType: 2
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    spawnTime: 61
+  - enemies:
+    - spawnPointType: 2
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    - spawnPointType: 2
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    spawnTime: 62
+  - enemies:
+    - spawnPointType: 2
+      enemyController: {fileID: 6512421048390303109, guid: 1404de773eb24a640a47813665ce2f1d, type: 3}
+    spawnTime: 75
+  - enemies:
+    - spawnPointType: 3
+      enemyController: {fileID: 6512421048390303109, guid: 1404de773eb24a640a47813665ce2f1d, type: 3}
+    - spawnPointType: 4
+      enemyController: {fileID: 6512421048390303109, guid: 1404de773eb24a640a47813665ce2f1d, type: 3}
+    spawnTime: 85
+  - enemies:
+    - spawnPointType: 0
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    - spawnPointType: 2
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    spawnTime: 90
+  - enemies:
+    - spawnPointType: 2
+      enemyController: {fileID: 6512421048390303109, guid: 1404de773eb24a640a47813665ce2f1d, type: 3}
+    spawnTime: 100
+  - enemies:
+    - spawnPointType: 2
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    spawnTime: 105
+  - enemies:
+    - spawnPointType: 2
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    spawnTime: 106
+  - enemies:
+    - spawnPointType: 2
+      enemyController: {fileID: 8761817771969383459, guid: bbb8cd096d1726a4a9e62420c60cfb12, type: 3}
+    spawnTime: 107
+  - enemies:
+    - spawnPointType: 2
+      enemyController: {fileID: 6512421048390303109, guid: 9414e4401b11d0a468a805993be6bce9, type: 3}
+    spawnTime: 110
+  - enemies:
+    - spawnPointType: 3
+      enemyController: {fileID: 6512421048390303109, guid: 9414e4401b11d0a468a805993be6bce9, type: 3}
+    - spawnPointType: 4
+      enemyController: {fileID: 6512421048390303109, guid: 9414e4401b11d0a468a805993be6bce9, type: 3}
+    spawnTime: 120
+  - enemies:
+    - spawnPointType: 2
+      enemyController: {fileID: 6512421048390303109, guid: 1404de773eb24a640a47813665ce2f1d, type: 3}
+    - spawnPointType: 3
+      enemyController: {fileID: 185033657274521444, guid: d5b144c30591c5d4d920e16bf5a7a594, type: 3}
+    - spawnPointType: 4
+      enemyController: {fileID: 185033657274521444, guid: d5b144c30591c5d4d920e16bf5a7a594, type: 3}
+    spawnTime: 140
+  - enemies:
+    - spawnPointType: 2
+      enemyController: {fileID: 7613110986020497079, guid: c389085604c596140bb4df8122403ccc, type: 3}
+    spawnTime: 160
